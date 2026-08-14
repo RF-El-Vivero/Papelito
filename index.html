@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Concurso R. F. 2026</title>
+<meta name="theme-color" content="#D6217F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CONCURSO R. F. 2026
+   Paleta: salmón · rosa fucsia · violeta pastel claro
+   ============================================================ */
+:root{
+  --salmon:#FF8A73;
+  --salmon-claro:#FFD9CF;
+  --fucsia:#D6217F;
+  --fucsia-oscuro:#A8125F;
+  --violeta:#CDB8F0;
+  --violeta-niebla:#F4EEFC;
+  --crema:#FFF8F5;
+  --tinta:#3E1F3D;
+  --tinta-suave:#8A6788;
+  --linea:#F0E3F2;
+  --blanco:#fff;
+  --radio:20px;
+  --radio-chico:13px;
+  --sombra:0 2px 6px rgba(94,45,110,.05), 0 14px 30px -16px rgba(94,45,110,.26);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  padding:0 16px calc(120px + env(safe-area-inset-bottom));
+  font-family:"Karla",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  color:var(--tinta);
+  background:
+    radial-gradient(120% 60% at 100% 0%, #FFE7DF 0%, rgba(255,231,223,0) 60%),
+    linear-gradient(168deg, var(--violeta-niebla) 0%, #FDF1F6 45%, #FFEDE6 100%);
+  background-attachment:fixed;
+  min-height:100vh;
+}
+.envoltorio{max-width:580px;margin:0 auto}
+
+/* ---------- Encabezado ---------- */
+.cabecera{padding:34px 4px 22px;text-align:center;position:relative}
+.cinta-color{
+  height:5px;width:96px;margin:0 auto 20px;border-radius:99px;
+  background:linear-gradient(90deg,var(--violeta) 0%,var(--fucsia) 52%,var(--salmon) 100%);
+}
+.cabecera h1{
+  font-family:"Fraunces",Georgia,serif;
+  font-optical-sizing:auto;
+  font-weight:600;
+  font-size:clamp(30px,9vw,42px);
+  line-height:1.05;
+  letter-spacing:-.015em;
+  margin:0;
+  color:var(--tinta);
+}
+.cabecera h1 em{
+  font-style:italic;font-weight:400;
+  background:linear-gradient(96deg,var(--fucsia),var(--salmon));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.cabecera p{
+  margin:12px 0 0;font-size:12px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--tinta-suave);
+}
+
+/* ---------- Consigna del mes ---------- */
+.consigna{
+  background:linear-gradient(135deg,rgba(205,184,240,.30),rgba(255,217,207,.42));
+  border:1px solid rgba(214,33,127,.14);
+  border-radius:var(--radio);
+  padding:16px 18px;margin-bottom:22px;
+}
+.consigna .titulo{
+  font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--fucsia-oscuro);margin-bottom:10px;
+}
+.consigna dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13.5px}
+.consigna dt{font-weight:700;color:var(--tinta-suave);font-size:11px;letter-spacing:.06em;text-transform:uppercase;align-self:center}
+.consigna dd{margin:0;font-family:"Fraunces",Georgia,serif;font-size:15px;color:var(--tinta)}
+
+/* ---------- Secciones ---------- */
+.seccion{
+  background:var(--blanco);
+  border-radius:var(--radio);
+  box-shadow:var(--sombra);
+  padding:22px 18px 24px;
+  margin-bottom:18px;
+  border:1px solid rgba(255,255,255,.9);
+}
+.rotulo-seccion{
+  display:flex;align-items:center;gap:10px;
+  margin:0 0 20px;
+}
+.rotulo-seccion span{
+  font-size:10.5px;font-weight:700;letter-spacing:.19em;text-transform:uppercase;
+  color:var(--fucsia);white-space:nowrap;
+}
+.rotulo-seccion:after{
+  content:"";height:1px;flex:1;
+  background:linear-gradient(90deg,var(--salmon-claro),rgba(205,184,240,0));
+}
+
+/* ---------- Campos ---------- */
+.campo{margin-bottom:20px}
+.campo:last-child{margin-bottom:0}
+label,.leyenda{
+  display:block;font-size:12px;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--tinta-suave);margin-bottom:8px;
+}
+.pista{font-size:12.5px;color:var(--tinta-suave);margin:7px 0 0;line-height:1.4}
+.pista strong{color:var(--fucsia-oscuro);font-weight:700}
+
+select,input[type="text"],input[type="date"]{
+  width:100%;
+  font-family:inherit;font-size:16.5px;color:var(--tinta);
+  background:var(--crema);
+  border:1.5px solid var(--linea);
+  border-radius:var(--radio-chico);
+  padding:13px 14px;
+  min-height:50px;
+  appearance:none;-webkit-appearance:none;
+  transition:border-color .15s, background .15s, box-shadow .15s;
+}
+select{
+  padding-right:42px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23D6217F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;
+}
+input[type="date"]{background-image:none}
+select:focus,input:focus{
+  outline:none;border-color:var(--fucsia);background:var(--blanco);
+  box-shadow:0 0 0 4px rgba(214,33,127,.11);
+}
+select:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid var(--fucsia);outline-offset:2px}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dupla .sub{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fucsia);margin-bottom:6px;display:block}
+
+/* ---------- Segmentado SI / NO ---------- */
+fieldset{border:0;margin:0;padding:0}
+.segmentado{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px}
+.segmentado input{position:absolute;opacity:0;width:1px;height:1px}
+.segmentado label{
+  margin:0;display:flex;align-items:center;justify-content:center;
+  min-height:50px;padding:12px 8px;cursor:pointer;
+  font-size:14px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--tinta-suave);
+  background:var(--crema);
+  border:1.5px solid var(--linea);
+  border-radius:var(--radio-chico);
+  transition:all .16s ease;
+  user-select:none;text-align:center;line-height:1.15;
+}
+.segmentado label:active{transform:scale(.97)}
+.segmentado input:checked + label{
+  color:var(--blanco);border-color:transparent;
+  background:linear-gradient(120deg,var(--fucsia),var(--salmon));
+  box-shadow:0 6px 16px -6px rgba(214,33,127,.6);
+}
+.segmentado input:focus-visible + label{outline:2px solid var(--fucsia);outline-offset:2px}
+.segmentado.no input:checked + label[data-tono="no"]{
+  background:linear-gradient(120deg,#B49AD9,var(--violeta));
+  box-shadow:0 6px 16px -6px rgba(140,110,190,.55);
+}
+
+/* ---------- Cinta de los 66 libros ---------- */
+.cinta-libros{margin-top:16px}
+.cinta{
+  display:flex;gap:1.5px;height:30px;align-items:stretch;
+  padding:5px;background:var(--crema);border-radius:10px;border:1.5px solid var(--linea);
+}
+.cinta i{
+  flex:1;min-width:0;border-radius:2px;background:#EBE0F4;
+  transition:background .18s ease, transform .18s ease;
+}
+.cinta i.act{background:linear-gradient(180deg,var(--fucsia),var(--salmon));transform:scaleY(1.06)}
+.cinta i.corte{margin-right:5px;position:relative}
+.cinta-pies{display:flex;justify-content:space-between;margin-top:7px;font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-suave)}
+.contador{
+  display:inline-flex;align-items:baseline;gap:6px;margin-top:12px;
+  padding:7px 14px;border-radius:99px;background:rgba(214,33,127,.09);
+}
+.contador b{font-family:"Fraunces",Georgia,serif;font-size:20px;font-weight:700;color:var(--fucsia-oscuro);line-height:1}
+.contador span{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fucsia-oscuro)}
+.contador.error{background:rgba(214,33,127,.14)}
+.contador.error b{font-size:14px;font-family:"Karla",sans-serif}
+
+/* ---------- Firma ---------- */
+.lienzo-caja{
+  position:relative;background:var(--crema);
+  border:1.5px dashed var(--violeta);border-radius:var(--radio-chico);
+  overflow:hidden;
+}
+.lienzo-caja canvas{display:block;width:100%;height:180px;touch-action:none;cursor:crosshair}
+.renglon{
+  position:absolute;left:22px;right:22px;bottom:44px;height:1px;
+  background:var(--salmon-claro);pointer-events:none;
+}
+.marca-agua{
+  position:absolute;left:0;right:0;bottom:18px;text-align:center;pointer-events:none;
+  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#D8C6DE;
+  transition:opacity .2s;
+}
+.lienzo-caja.firmada .marca-agua,.lienzo-caja.firmada .renglon{opacity:0}
+.acciones-firma{display:flex;justify-content:flex-end;margin-top:9px}
+.borrar{
+  background:none;border:0;padding:8px 4px;cursor:pointer;
+  font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--fucsia);
+}
+.borrar:hover{color:var(--fucsia-oscuro)}
+
+/* ---------- Enviar ---------- */
+.enviar{
+  width:100%;min-height:60px;margin-top:6px;
+  font-family:"Karla",sans-serif;font-size:15px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--blanco);cursor:pointer;
+  background:linear-gradient(120deg,var(--fucsia-oscuro),var(--fucsia) 42%,var(--salmon));
+  border:0;border-radius:var(--radio);
+  box-shadow:0 10px 26px -10px rgba(214,33,127,.75);
+  transition:transform .14s ease, box-shadow .14s ease, filter .14s;
+}
+.enviar:hover{filter:brightness(1.06)}
+.enviar:active{transform:translateY(2px);box-shadow:0 5px 14px -8px rgba(214,33,127,.8)}
+.enviar[disabled]{opacity:.6;cursor:progress}
+
+.aviso{
+  margin-top:14px;padding:13px 16px;border-radius:var(--radio-chico);
+  font-size:13.5px;line-height:1.45;display:none;
+}
+.aviso.ver{display:block}
+.aviso.mal{background:#FFECEF;color:#9A1140;border:1px solid #F8C9D6}
+.aviso.info{background:var(--violeta-niebla);color:#5B3A76;border:1px solid #E2D3F5}
+
+/* ---------- Pantalla de confirmación ---------- */
+.listo{display:none;text-align:center;padding:44px 22px}
+.listo.ver{display:block;animation:sube .45s ease both}
+.sello{
+  width:78px;height:78px;margin:0 auto 22px;border-radius:50%;
+  background:linear-gradient(135deg,var(--fucsia),var(--salmon));
+  display:grid;place-items:center;box-shadow:0 14px 30px -12px rgba(214,33,127,.65);
+}
+.sello svg{width:34px;height:34px}
+.listo h2{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:27px;margin:0 0 8px}
+.listo p{margin:0 0 26px;color:var(--tinta-suave);font-size:15px}
+.listo p b{color:var(--tinta)}
+.otra{
+  min-height:54px;padding:0 30px;border:1.5px solid var(--fucsia);border-radius:99px;
+  background:none;color:var(--fucsia);cursor:pointer;
+  font-family:inherit;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+}
+.otra:hover{background:var(--fucsia);color:var(--blanco)}
+
+/* ---------- Pendientes ---------- */
+.pendientes{
+  display:none;margin:0 0 18px;padding:14px 16px;border-radius:var(--radio-chico);
+  background:#FFF3E9;border:1px solid #FFD9B8;font-size:13.5px;color:#8A4B10;
+}
+.pendientes.ver{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.pendientes button{
+  border:0;background:#8A4B10;color:#fff;border-radius:99px;padding:8px 16px;cursor:pointer;
+  font-family:inherit;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+}
+.pendientes button.claro{background:none;color:#8A4B10;text-decoration:underline;padding:8px 4px}
+
+.pie{text-align:center;padding:30px 10px 10px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#C3A8C6}
+
+@keyframes sube{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.seccion{animation:sube .5s ease both}
+.seccion:nth-of-type(2){animation-delay:.05s}
+.seccion:nth-of-type(3){animation-delay:.1s}
+.seccion:nth-of-type(4){animation-delay:.15s}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="envoltorio">
+
+  <header class="cabecera">
+    <div class="cinta-color"></div>
+    <h1>Concurso <em>R. F.</em> 2026</h1>
+    <p>Planilla mensual</p>
+  </header>
+
+  <div class="pendientes" id="pendientes">
+    <span id="txtPendientes"></span>
+    <button type="button" id="btnReintentar">Reintentar envío</button>
+    <button type="button" class="claro" id="btnDescargar">Descargar copia</button>
+  </div>
+
+  <form id="formulario" novalidate>
+
+    <div class="consigna" id="consigna">
+      <div class="titulo" id="tituloConsigna">Consigna del mes</div>
+      <dl>
+        <dt>Lectura</dt><dd id="cLectura">—</dd>
+        <dt>Versículos</dt><dd id="cVersiculos">—</dd>
+        <dt>Índice</dt><dd id="cIndice">—</dd>
+      </dl>
+    </div>
+
+    <!-- ============ PRESENCIA ============ -->
+    <section class="seccion">
+      <div class="rotulo-seccion"><span>Presencia</span></div>
+
+      <div class="campo">
+        <label for="nombre">Nombre</label>
+        <select id="nombre" required>
+          <option value="">Elegir participante…</option>
+        </select>
+        <div id="cajaNueva" style="display:none;margin-top:10px">
+          <input type="text" id="nombreNuevo" placeholder="Apellido y nombre de la nueva participante" autocomplete="off">
+          <button type="button" class="otra" id="btnAgregar" style="margin-top:10px;width:100%;min-height:48px">Agregar a la lista</button>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha" required>
+      </div>
+
+      <div class="campo">
+        <fieldset>
+          <legend class="leyenda">Asistencia</legend>
+          <div class="segmentado no">
+            <input type="radio" name="asistencia" id="asi-si" value="SI" checked><label for="asi-si">Sí</label>
+            <input type="radio" name="asistencia" id="asi-no" value="NO"><label for="asi-no" data-tono="no">No</label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="campo">
+        <fieldset>
+          <legend class="leyenda">Puntualidad</legend>
+          <div class="segmentado no">
+            <input type="radio" name="puntualidad" id="pun-si" value="SI" checked><label for="pun-si">Sí</label>
+            <input type="radio" name="puntualidad" id="pun-no" value="NO"><label for="pun-no" data-tono="no">No</label>
+          </div>
+        </fieldset>
+      </div>
+    </section>
+
+    <!-- ============ ESTUDIO ============ -->
+    <section class="seccion">
+      <div class="rotulo-seccion"><span>Estudio</span></div>
+
+      <div class="campo">
+        <label for="lectura">Lectura · cantidad de capítulos leídos</label>
+        <select id="lectura"></select>
+      </div>
+
+      <div class="campo">
+        <label for="versos">Versículos memorizados</label>
+        <select id="versos"></select>
+      </div>
+
+      <div class="campo">
+        <span class="leyenda">Memorización del índice</span>
+        <div class="dupla">
+          <div>
+            <span class="sub">Desde</span>
+            <select id="desde" aria-label="Índice desde"></select>
+          </div>
+          <div>
+            <span class="sub">Hasta</span>
+            <select id="hasta" aria-label="Índice hasta"></select>
+          </div>
+        </div>
+        <div class="cinta-libros">
+          <div class="cinta" id="cinta" aria-hidden="true"></div>
+          <div class="cinta-pies"><span>Génesis</span><span>Apocalipsis</span></div>
+        </div>
+        <div class="contador" id="contador"><b>0</b><span>libros</span></div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICIO ============ -->
+    <section class="seccion">
+      <div class="rotulo-seccion"><span>Servicio y lectura</span></div>
+
+      <div class="campo">
+        <label for="folletos">Folletos repartidos</label>
+        <select id="folletos"></select>
+      </div>
+
+      <div class="campo">
+        <fieldset>
+          <legend class="leyenda">Invitada</legend>
+          <div class="segmentado no">
+            <input type="radio" name="invitada" id="inv-si" value="SI"><label for="inv-si">Sí</label>
+            <input type="radio" name="invitada" id="inv-no" value="NO" checked><label for="inv-no" data-tono="no">No</label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="campo">
+        <span class="leyenda">Lectura de libros recomendados 2026</span>
+        <select id="libro" aria-label="Libro recomendado" style="margin-bottom:12px"></select>
+        <div class="segmentado" role="group" aria-label="Estado de la lectura">
+          <input type="radio" name="estadoLibro" id="lib-ley" value="LEYENDO"><label for="lib-ley">Leyendo</label>
+          <input type="radio" name="estadoLibro" id="lib-com" value="COMPLETO"><label for="lib-com">Completo</label>
+          <input type="radio" name="estadoLibro" id="lib-no" value="NO" checked><label for="lib-no">No</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FIRMA ============ -->
+    <section class="seccion">
+      <div class="rotulo-seccion"><span>Firma de la compañera</span></div>
+
+      <div class="campo">
+        <span class="leyenda">Firma</span>
+        <div class="lienzo-caja" id="cajaLienzo">
+          <canvas id="lienzo"></canvas>
+          <div class="renglon"></div>
+          <div class="marca-agua">Firme aquí con el dedo</div>
+        </div>
+        <div class="acciones-firma"><button type="button" class="borrar" id="btnBorrar">Borrar firma</button></div>
+      </div>
+
+      <div class="campo">
+        <label for="firmante">Apellido y nombre</label>
+        <input type="text" id="firmante" placeholder="Apellido y nombre de quien firma" autocomplete="name">
+      </div>
+    </section>
+
+    <button type="submit" class="enviar" id="btnEnviar">Guardar en la planilla</button>
+    <div class="aviso" id="aviso"></div>
+  </form>
+
+  <div class="listo" id="listo">
+    <div class="sello">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>
+    </div>
+    <h2>Guardado</h2>
+    <p id="textoListo"></p>
+    <button type="button" class="otra" id="btnOtra">Cargar otra participante</button>
+  </div>
+
+  <div class="pie">Rama Femenina · 2026</div>
+</div>
+
+<script>
+/* ============================================================
+   1) CONFIGURACIÓN  —  lo único que hay que tocar
+   ============================================================ */
+const CONFIG = {
+
+  // ►►► PEGAR ACÁ la URL que termina en /exec que da Apps Script
+  URL_APPS_SCRIPT: "",
+
+  // Enlace a la planilla (se muestra al terminar)
+  URL_PLANILLA: "https://docs.google.com/spreadsheets/d/1VV2xF5Mv1iUO9xXygvFh_UwWccSLROPqAeP-YmXvEQ8/edit",
+
+  MAX_LECTURA: 35,      // capítulos leídos: 1 a 35
+  MAX_VERSICULOS: 50,   // versículos memorizados: 1 a 50
+  MAX_FOLLETOS: 99,     // folletos repartidos: 1 a 99
+
+  // El informe de cada mes corresponde a la consigna del mes anterior.
+  // Poner 0 si algún año deciden informar el mismo mes.
+  DESFASE_MES: 1
+};
+
+const LIBROS_RECOMENDADOS = [
+  "MUJERES FIELES Y SU DIOS EXTRAORDINARIO",
+  "MUJERES PIADOSAS",
+  "7 BIOGRAFÍAS…"
+];
+
+// Participantes ya cargadas en MAYO y JUNIO
+const NOMBRES_BASE = [
+  "ANA GALVAN","ANGELICA UÑA","CARMEN GUEVARA","DANIELA SANTILLAN","EDITH",
+  "GABRIELA LOPEZ","GABRIELA MIEREZ","GLORIA","JOANA GUEVARA","JULIETA MIEREZ",
+  "KARINA SANTILLAN","LUCIANA MONZON","LUZ MIEREZ","MARI CESPEDES","MARIA ESTER DIAZ",
+  "MARIANA GIMENEZ","NAOMI INSAURRALDE","SILVIA RUIZ","SILVIA SANABRIA","SOFIA SOTO",
+  "VIRGINA GRANVIEL","YANINA ESCOBAR","YANINA GUEVARA"
+];
+
+const LIBROS = ["Génesis","Éxodo","Levítico","Números","Deuteronomio","Josué","Jueces","Rut",
+"I Samuel","II Samuel","I Reyes","II Reyes","I Crónicas","II Crónicas","Esdras","Nehemías",
+"Ester","Job","Salmos","Proverbios","Eclesiastés","Cantar de los Cantares","Isaías","Jeremías",
+"Lamentaciones","Ezequiel","Daniel","Oseas","Joel","Amós","Abdías","Jonás","Miqueas","Nahum",
+"Habacuc","Sofonías","Hageo","Zacarías","Malaquías","Mateo","Marcos","Lucas","Juan","Hechos",
+"Romanos","I Corintios","II Corintios","Gálatas","Efesios","Filipenses","Colosenses",
+"I Tesalonicenses","II Tesalonicenses","I Timoteo","II Timoteo","Tito","Filemón","Hebreos",
+"Santiago","I Pedro","II Pedro","I Juan","II Juan","III Juan","Judas","Apocalipsis"];
+
+const MESES = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO",
+"SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
+
+// Cronograma tomado de la hoja CONCURSO
+const CRONOGRAMA = {
+  ABRIL:      {lectura:"Proverbios 28 – Isaías 6",   versiculos:"Santiago 1:12-18",              indice:"Génesis – II Samuel"},
+  MAYO:       {lectura:"Isaías 7 – Isaías 35",       versiculos:"Salmos 40:1-5",                 indice:"I Reyes – Cantares"},
+  JUNIO:      {lectura:"Isaías 36 – Jeremías 4",     versiculos:"Números 6:24-26",               indice:"Isaías – Amós"},
+  JULIO:      {lectura:"Jeremías 5 – Jeremías 33",   versiculos:"1 Co. 6:9-11; Efesios 4:17-24", indice:"Abdías – Malaquías"},
+  AGOSTO:     {lectura:"Jeremías 34 – Ezequiel 4",   versiculos:"Oseas 11:1-8",                  indice:"Mateo – Efesios"},
+  SEPTIEMBRE: {lectura:"Ezequiel 5 – Ezequiel 32",   versiculos:"Salmos 16:5-6",                 indice:"Filipenses – Hebreos"},
+  OCTUBRE:    {lectura:"Ezequiel 33 – Daniel 12",    versiculos:"Juan 4:13-14",                  indice:"Santiago – Apocalipsis"}
+};
+
+/* ============================================================
+   2) UTILIDADES
+   ============================================================ */
+const $ = id => document.getElementById(id);
+const guardado = {
+  leer(clave, porDefecto){
+    try{ const v = localStorage.getItem(clave); return v ? JSON.parse(v) : porDefecto; }
+    catch(e){ return porDefecto; }
+  },
+  escribir(clave, valor){
+    try{ localStorage.setItem(clave, JSON.stringify(valor)); }catch(e){}
+  }
+};
+
+function opcionesNumericas(sel, max){
+  sel.innerHTML = '<option value="0">0 · ninguno</option>';
+  for(let i=1;i<=max;i++){
+    const o = document.createElement("option");
+    o.value = i; o.textContent = i;
+    sel.appendChild(o);
+  }
+}
+
+function opcionesLibros(sel){
+  sel.innerHTML = '<option value="">— sin índice —</option>';
+  LIBROS.forEach((n,i)=>{
+    const o = document.createElement("option");
+    o.value = i; o.textContent = n;
+    sel.appendChild(o);
+  });
+}
+
+function hoyLocal(){
+  const d = new Date();
+  const m = String(d.getMonth()+1).padStart(2,"0");
+  const dd = String(d.getDate()).padStart(2,"0");
+  return `${d.getFullYear()}-${m}-${dd}`;
+}
+
+/* ============================================================
+   3) NOMBRES
+   ============================================================ */
+const OPCION_NUEVA = "__nueva__";
+
+function listaNombres(){
+  const extra = guardado.leer("rf2026_nombres", []);
+  return Array.from(new Set([...NOMBRES_BASE, ...extra]))
+              .sort((a,b)=>a.localeCompare(b,"es"));
+}
+
+function pintarNombres(seleccionado){
+  const sel = $("nombre");
+  sel.innerHTML = '<option value="">Elegir participante…</option>';
+  listaNombres().forEach(n=>{
+    const o = document.createElement("option");
+    o.value = n; o.textContent = n;
+    sel.appendChild(o);
+  });
+  const nueva = document.createElement("option");
+  nueva.value = OPCION_NUEVA;
+  nueva.textContent = "➕  Agregar nueva participante…";
+  sel.appendChild(nueva);
+  if(seleccionado) sel.value = seleccionado;
+}
+
+$("nombre").addEventListener("change", e=>{
+  const esNueva = e.target.value === OPCION_NUEVA;
+  $("cajaNueva").style.display = esNueva ? "block" : "none";
+  if(esNueva) $("nombreNuevo").focus();
+});
+
+function agregarNombre(){
+  const valor = $("nombreNuevo").value.trim().toUpperCase();
+  if(!valor){ $("nombreNuevo").focus(); return; }
+  const extra = guardado.leer("rf2026_nombres", []);
+  if(!extra.includes(valor)) extra.push(valor);
+  guardado.escribir("rf2026_nombres", extra);
+  pintarNombres(valor);
+  $("cajaNueva").style.display = "none";
+  $("nombreNuevo").value = "";
+}
+$("btnAgregar").addEventListener("click", agregarNombre);
+$("nombreNuevo").addEventListener("keydown", e=>{
+  if(e.key === "Enter"){ e.preventDefault(); agregarNombre(); }
+});
+
+// Trae los nombres que ya están en la planilla, para que la lista se mantenga al día
+async function sincronizarNombres(){
+  if(!CONFIG.URL_APPS_SCRIPT) return;
+  try{
+    const r = await fetch(CONFIG.URL_APPS_SCRIPT + "?accion=nombres");
+    const datos = await r.json();
+    if(Array.isArray(datos.nombres) && datos.nombres.length){
+      const extra = guardado.leer("rf2026_nombres", []);
+      const unidos = Array.from(new Set([...extra, ...datos.nombres]))
+                          .filter(n => !NOMBRES_BASE.includes(n));
+      guardado.escribir("rf2026_nombres", unidos);
+      pintarNombres($("nombre").value);
+    }
+  }catch(e){ /* sin conexión: se usa la lista local */ }
+}
+
+/* ============================================================
+   4) CINTA DE LOS 66 LIBROS
+   ============================================================ */
+function construirCinta(){
+  const cinta = $("cinta");
+  cinta.innerHTML = "";
+  for(let i=0;i<66;i++){
+    const b = document.createElement("i");
+    if(i === 38) b.classList.add("corte");   // división entre Malaquías y Mateo
+    cinta.appendChild(b);
+  }
+}
+
+function actualizarIndice(){
+  const d = $("desde").value, h = $("hasta").value;
+  const barras = $("cinta").children;
+  const cont = $("contador");
+  for(const b of barras) b.classList.remove("act");
+
+  if(d === "" || h === ""){
+    cont.className = "contador";
+    cont.innerHTML = "<b>0</b><span>libros</span>";
+    return 0;
+  }
+  const di = +d, hi = +h;
+  if(hi < di){
+    cont.className = "contador error";
+    cont.innerHTML = "<b>Revisar</b><span>«hasta» va después de «desde»</span>";
+    return -1;
+  }
+  for(let i=di;i<=hi;i++) barras[i].classList.add("act");
+  const total = hi - di + 1;
+  cont.className = "contador";
+  cont.innerHTML = `<b>${total}</b><span>libro${total===1?"":"s"} memorizado${total===1?"":"s"}</span>`;
+  return total;
+}
+$("desde").addEventListener("change", actualizarIndice);
+$("hasta").addEventListener("change", actualizarIndice);
+
+/* ============================================================
+   5) CONSIGNA DEL MES
+   ============================================================ */
+function mesInformado(iso){
+  const [a,m] = iso.split("-").map(Number);
+  const i = ((m - 1 - CONFIG.DESFASE_MES) + 12) % 12;
+  return MESES[i];
+}
+
+function actualizarConsigna(){
+  const iso = $("fecha").value || hoyLocal();
+  const mes = mesInformado(iso);
+  const c = CRONOGRAMA[mes];
+  $("tituloConsigna").textContent = `Consigna de ${mes.toLowerCase()}`;
+  $("cLectura").textContent    = c ? c.lectura    : "—";
+  $("cVersiculos").textContent = c ? c.versiculos : "—";
+  $("cIndice").textContent     = c ? c.indice     : "—";
+  $("consigna").style.display  = c ? "block" : "none";
+}
+$("fecha").addEventListener("change", actualizarConsigna);
+
+/* ============================================================
+   6) FIRMA
+   ============================================================ */
+const lienzo = $("lienzo");
+const ctx = lienzo.getContext("2d");
+let hayFirma = false, dibujando = false, anchoLienzo = 0;
+
+function prepararLienzo(){
+  const caja = $("cajaLienzo").getBoundingClientRect();
+  if(Math.abs(caja.width - anchoLienzo) < 2) return;
+  anchoLienzo = caja.width;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  lienzo.width  = Math.round(caja.width * dpr);
+  lienzo.height = Math.round(180 * dpr);
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.lineWidth = 2.6;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "#3E1F3D";
+  hayFirma = false;
+  $("cajaLienzo").classList.remove("firmada");
+}
+
+function punto(ev){
+  const r = lienzo.getBoundingClientRect();
+  return {x: ev.clientX - r.left, y: ev.clientY - r.top};
+}
+
+lienzo.addEventListener("pointerdown", ev=>{
+  ev.preventDefault();
+  dibujando = true;
+  lienzo.setPointerCapture(ev.pointerId);
+  const p = punto(ev);
+  ctx.beginPath();
+  ctx.moveTo(p.x, p.y);
+  ctx.lineTo(p.x + 0.1, p.y);
+  ctx.stroke();
+  hayFirma = true;
+  $("cajaLienzo").classList.add("firmada");
+});
+lienzo.addEventListener("pointermove", ev=>{
+  if(!dibujando) return;
+  ev.preventDefault();
+  const p = punto(ev);
+  ctx.lineTo(p.x, p.y);
+  ctx.stroke();
+});
+["pointerup","pointercancel","pointerleave"].forEach(t=>
+  lienzo.addEventListener(t, ()=>{ dibujando = false; })
+);
+
+function borrarFirma(){
+  ctx.save();
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.clearRect(0,0,lienzo.width,lienzo.height);
+  ctx.restore();
+  hayFirma = false;
+  $("cajaLienzo").classList.remove("firmada");
+}
+$("btnBorrar").addEventListener("click", borrarFirma);
+window.addEventListener("resize", ()=>{ if(!hayFirma) prepararLienzo(); });
+
+/* ============================================================
+   7) ENVÍO
+   ============================================================ */
+function mostrarAviso(texto, tipo){
+  const a = $("aviso");
+  a.textContent = texto;
+  a.className = "aviso ver " + tipo;
+}
+function ocultarAviso(){ $("aviso").className = "aviso"; }
+
+function armarRegistro(){
+  const iso = $("fecha").value;
+  const desde = $("desde").value, hasta = $("hasta").value;
+  const totalIndice = (desde === "" || hasta === "") ? 0 : (+hasta - +desde + 1);
+  const estado = document.querySelector('input[name="estadoLibro"]:checked').value;
+  const libro = $("libro").value;
+
+  return {
+    nombre:      $("nombre").value,
+    fecha:       iso,
+    mesHoja:     MESES[+iso.split("-")[1] - 1],
+    mesConsigna: mesInformado(iso),
+    asistencia:  document.querySelector('input[name="asistencia"]:checked').value,
+    puntualidad: document.querySelector('input[name="puntualidad"]:checked').value,
+    lectura:     +$("lectura").value,
+    versos:      +$("versos").value,
+    indiceDesde: desde === "" ? "" : LIBROS[+desde],
+    indiceHasta: hasta === "" ? "" : LIBROS[+hasta],
+    indice:      totalIndice,
+    folletos:    +$("folletos").value,
+    invitada:    document.querySelector('input[name="invitada"]:checked').value,
+    libro:       estado === "NO" ? "" : libro,
+    estadoLibro: estado,
+    firmante:    $("firmante").value.trim(),
+    firma:       hayFirma ? lienzo.toDataURL("image/png") : ""
+  };
+}
+
+async function enviar(registro){
+  if(!CONFIG.URL_APPS_SCRIPT) throw new Error("sin-url");
+  const r = await fetch(CONFIG.URL_APPS_SCRIPT, {
+    method: "POST",
+    headers: {"Content-Type": "text/plain;charset=utf-8"},
+    body: JSON.stringify(registro)
+  });
+  const datos = await r.json();
+  if(!datos.ok) throw new Error(datos.error || "error");
+  return datos;
+}
+
+$("formulario").addEventListener("submit", async ev=>{
+  ev.preventDefault();
+  ocultarAviso();
+
+  if(!$("nombre").value || $("nombre").value === OPCION_NUEVA){
+    mostrarAviso("Falta elegir el nombre de la participante.", "mal");
+    $("nombre").focus(); return;
+  }
+  if(!$("fecha").value){
+    mostrarAviso("Falta la fecha.", "mal"); $("fecha").focus(); return;
+  }
+  if(actualizarIndice() === -1){
+    mostrarAviso("En el índice, el libro «hasta» tiene que ir después del libro «desde».", "mal");
+    $("hasta").focus(); return;
+  }
+  if(!hayFirma){
+    mostrarAviso("Falta la firma de la compañera.", "mal");
+    $("cajaLienzo").scrollIntoView({block:"center", behavior:"smooth"}); return;
+  }
+  if(!$("firmante").value.trim()){
+    mostrarAviso("Falta el apellido y nombre de quien firma.", "mal");
+    $("firmante").focus(); return;
+  }
+
+  const registro = armarRegistro();
+  const boton = $("btnEnviar");
+  boton.disabled = true;
+  boton.textContent = "Guardando…";
+
+  try{
+    await enviar(registro);
+    terminar(registro);
+  }catch(err){
+    encolar(registro);
+    if(err.message === "sin-url"){
+      mostrarAviso("Todavía no está conectada la planilla. El registro quedó guardado en este teléfono; se envía solo cuando se cargue la dirección de Apps Script.", "info");
+    }else{
+      mostrarAviso("No se pudo conectar con la planilla. El registro quedó guardado en este teléfono: tocá «Reintentar envío» cuando vuelva la señal.", "info");
+    }
+    terminar(registro, true);
+  }finally{
+    boton.disabled = false;
+    boton.textContent = "Guardar en la planilla";
+  }
+});
+
+function terminar(registro, pendiente){
+  $("formulario").style.display = "none";
+  $("listo").classList.add("ver");
+  $("textoListo").innerHTML = pendiente
+    ? `<b>${registro.nombre}</b> quedó en espera para la hoja <b>${registro.mesHoja}</b>.`
+    : `<b>${registro.nombre}</b> se cargó en la hoja <b>${registro.mesHoja}</b>. <a href="${CONFIG.URL_PLANILLA}" target="_blank" rel="noopener" style="color:#D6217F">Ver la planilla</a>`;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+$("btnOtra").addEventListener("click", ()=>{
+  $("listo").classList.remove("ver");
+  $("formulario").style.display = "block";
+  ocultarAviso();
+  const fecha = $("fecha").value;
+  $("formulario").reset();
+  $("fecha").value = fecha;
+  $("cajaNueva").style.display = "none";
+  borrarFirma();
+  actualizarIndice();
+  actualizarConsigna();
+  window.scrollTo({top:0, behavior:"smooth"});
+});
+
+/* ============================================================
+   8) PENDIENTES (si falla la conexión)
+   ============================================================ */
+function encolar(registro){
+  const cola = guardado.leer("rf2026_pendientes", []);
+  cola.push(registro);
+  guardado.escribir("rf2026_pendientes", cola);
+  pintarPendientes();
+}
+
+function pintarPendientes(){
+  const cola = guardado.leer("rf2026_pendientes", []);
+  const caja = $("pendientes");
+  if(!cola.length){ caja.className = "pendientes"; return; }
+  caja.className = "pendientes ver";
+  $("txtPendientes").textContent =
+    cola.length === 1 ? "1 registro sin enviar." : `${cola.length} registros sin enviar.`;
+}
+
+$("btnReintentar").addEventListener("click", async ()=>{
+  const cola = guardado.leer("rf2026_pendientes", []);
+  if(!cola.length) return;
+  const boton = $("btnReintentar");
+  boton.disabled = true; boton.textContent = "Enviando…";
+  const quedan = [];
+  for(const registro of cola){
+    try{ await enviar(registro); }catch(e){ quedan.push(registro); }
+  }
+  guardado.escribir("rf2026_pendientes", quedan);
+  pintarPendientes();
+  boton.disabled = false; boton.textContent = "Reintentar envío";
+  mostrarAviso(quedan.length
+    ? `Quedaron ${quedan.length} registros sin enviar. Revisá la conexión o la dirección de Apps Script.`
+    : "Listo: se enviaron todos los registros pendientes.", quedan.length ? "mal" : "info");
+});
+
+$("btnDescargar").addEventListener("click", ()=>{
+  const cola = guardado.leer("rf2026_pendientes", []);
+  if(!cola.length) return;
+  const cab = ["FECHA","NOMBRE","ASISTENCIA","PUNTUALIDAD","LECTURA","VERSOS",
+               "INDICE DESDE","INDICE HASTA","INDICE","FOLLETOS","INVITADA",
+               "LIBRO","ESTADO LIBRO","FIRMANTE"];
+  const filas = cola.map(r=>[r.fecha,r.nombre,r.asistencia,r.puntualidad,r.lectura,r.versos,
+    r.indiceDesde,r.indiceHasta,r.indice,r.folletos,r.invitada,r.libro,r.estadoLibro,r.firmante]);
+  const csv = [cab, ...filas]
+    .map(f => f.map(v => `"${String(v ?? "").replace(/"/g,'""')}"`).join(","))
+    .join("\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob(["\ufeff"+csv], {type:"text/csv;charset=utf-8"}));
+  a.download = "concurso-rf-2026-pendientes.csv";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+/* ============================================================
+   9) ARRANQUE
+   ============================================================ */
+(function iniciar(){
+  pintarNombres();
+  $("fecha").value = hoyLocal();
+  opcionesNumericas($("lectura"),  CONFIG.MAX_LECTURA);
+  opcionesNumericas($("versos"),   CONFIG.MAX_VERSICULOS);
+  opcionesNumericas($("folletos"), CONFIG.MAX_FOLLETOS);
+  opcionesLibros($("desde"));
+  opcionesLibros($("hasta"));
+
+  const sl = $("libro");
+  sl.innerHTML = '<option value="">Elegir libro…</option>';
+  LIBROS_RECOMENDADOS.forEach(n=>{
+    const o = document.createElement("option");
+    o.value = n; o.textContent = n;
+    sl.appendChild(o);
+  });
+
+  construirCinta();
+  actualizarIndice();
+  actualizarConsigna();
+  prepararLienzo();
+  pintarPendientes();
+  sincronizarNombres();
+})();
+</script>
+</body>
+</html>
